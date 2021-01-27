@@ -3,6 +3,7 @@ package com.company.stream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -33,7 +34,8 @@ public class StreamExample {
 //            System.out.println();
 //        });
 
-        //그래프 접근
+        //그래프
+        //인접 리스트
         String[][]graph = new String[][]{{"1","2"},{"3","5"},{"2","3"},{"4","5"},{"1","5"}};
         Map<String, List<String>> collect1 = Arrays.stream(graph).collect(Collectors.groupingBy(e -> e[0],
                 Collectors.mapping(e -> e[1], Collectors.toList())));
@@ -42,6 +44,9 @@ public class StreamExample {
             v.forEach(e -> System.out.print(" " + e + " "));
             System.out.println();
         });
+        // 그래프 키
+        Arrays.stream(graph).collect(Collectors.mapping(e -> e[0], Collectors.toSet())).forEach(e-> System.out.println(e));
+
     }
 
     private static class Person {
